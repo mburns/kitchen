@@ -21,7 +21,7 @@ include_recipe 'nodejs'
 
 statsd_version = node['statsd']['sha']
 
-if platform?(%w{ ubuntu debian })
+if platform?(%w(ubuntu debian))
 
   include_recipe 'build-essential'
   include_recipe 'git'
