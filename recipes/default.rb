@@ -21,7 +21,7 @@ include_recipe 'nodejs'
 
 statsd_version = node['statsd']['sha']
 
-if platform?(%w(debian))
+if platform?(%w{ ubuntu debian })
 
   include_recipe 'build-essential'
   include_recipe 'git'
@@ -49,6 +49,7 @@ if platform?(%w(debian))
   dpkg_package 'statsd' do
     action :install
     source "#{node['statsd']['tmp_dir']}/statsd_#{node['statsd']['package_version']}_all.deb"
+    options '--force-confold'
   end
 end
 
@@ -69,6 +70,7 @@ if platform?(%w(redhat centos fedora))
 
   directory "#{node['statsd']['tmp_dir']}/build/usr/share/statsd/scripts" do
     recursive true
+    action :create
   end
 
   git "#{node['statsd']['tmp_dir']}/build/usr/share/statsd" do
@@ -94,8 +96,7 @@ if platform?(%w(redhat centos fedora))
     source "#{node['statsd']['tmp_dir']}/build/statsd-#{node['statsd']['package_version']}-1.noarch.rpm"
   end
 
-  directory '/etc/statsd' do
-  end
+  directory '/etc/statsd'
 end
 
 template '/etc/statsd/rdioConfig.js' do
