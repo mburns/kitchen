@@ -19,15 +19,15 @@
 
 include_recipe 'nodejs'
 
-statsd_version = node[:statsd][:sha]
+statsd_version = node['statsd']['sha']
 
 if platform?(%w(debian))
 
   include_recipe 'build-essential'
   include_recipe 'git'
 
-  git "#{node[:statsd][:tmp_dir]}/statsd" do
-    repository node[:statsd][:repo]
+  git "#{node['statsd']['tmp_dir']}/statsd" do
+    repository node['statsd']['repo']
     reference statsd_version
     action :sync
     notifies :run, 'execute[build debian package]'
@@ -36,19 +36,19 @@ if platform?(%w(debian))
   package 'debhelper'
 
   # Fix the debian changelog file of the repo
-  template "#{node[:statsd][:tmp_dir]}/statsd/debian/changelog" do
+  template "#{node['statsd']['tmp_dir']}/statsd/debian/changelog" do
     source 'changelog.erb'
   end
 
   execute 'build debian package' do
     command 'dpkg-buildpackage -us -uc'
-    cwd "#{node[:statsd][:tmp_dir]}/statsd"
-    creates "#{node[:statsd][:tmp_dir]}/statsd_#{node[:statsd][:package_version]}_all.deb"
+    cwd "#{node['statsd']['tmp_dir']}/statsd"
+    creates "#{node['statsd']['tmp_dir']}/statsd_#{node['statsd']['package_version']}_all.deb"
   end
 
   dpkg_package 'statsd' do
     action :install
-    source "#{node[:statsd][:tmp_dir]}/statsd_#{node[:statsd][:package_version]}_all.deb"
+    source "#{node['statsd']['tmp_dir']}/statsd_#{node['statsd']['package_version']}_all.deb"
   end
 end
 
@@ -67,31 +67,31 @@ if platform?(%w(redhat centos fedora))
     action :install
   end
 
-  directory "#{node[:statsd][:tmp_dir]}/build/usr/share/statsd/scripts" do
+  directory "#{node['statsd']['tmp_dir']}/build/usr/share/statsd/scripts" do
     recursive true
   end
 
-  git "#{node[:statsd][:tmp_dir]}/build/usr/share/statsd" do
-    repository node[:statsd][:repo]
+  git "#{node['statsd']['tmp_dir']}/build/usr/share/statsd" do
+    repository node['statsd']['repo']
     reference statsd_version
     action :sync
     notifies :run, 'execute[build rpm package]'
   end
 
   # Fix the debian changelog file of the repo
-  #   template "#{node[:statsd][:tmp_dir]}/statsd/debian/changelog" do
+  #   template "#{node['statsd']['tmp_dir']}/statsd/debian/changelog" do
   #    source "changelog.erb"
   #   end
 
   execute 'build rpm package' do
-    command "fpm -s dir -t rpm -n statsd -a noarch -v #{node[:statsd][:package_version]} ."
-    cwd "#{node[:statsd][:tmp_dir]}/build"
-    creates "#{node[:statsd][:tmp_dir]}/build/statsd-#{node[:statsd][:package_version]}-1.noarch.rpm"
+    command "fpm -s dir -t rpm -n statsd -a noarch -v #{node['statsd']['package_version']} ."
+    cwd "#{node['statsd']['tmp_dir']}/build"
+    creates "#{node['statsd']['tmp_dir']}/build/statsd-#{node['statsd']['package_version']}-1.noarch.rpm"
   end
 
   rpm_package 'statsd' do
     action :install
-    source "#{node[:statsd][:tmp_dir]}/build/statsd-#{node[:statsd][:package_version]}-1.noarch.rpm"
+    source "#{node['statsd']['tmp_dir']}/build/statsd-#{node['statsd']['package_version']}-1.noarch.rpm"
   end
 
   directory '/etc/statsd' do
@@ -102,9 +102,9 @@ template '/etc/statsd/rdioConfig.js' do
   source 'rdioConfig.js.erb'
   mode 0644
   variables(
-    port: node[:statsd][:port],
-    graphitePort: node[:statsd][:graphite_port],
-    graphiteHost: node[:statsd][:graphite_host]
+    port: node['statsd']['port'],
+    graphitePort: node['statsd']['graphite_port'],
+    graphiteHost: node['statsd']['graphite_host']
   )
 
   notifies :restart, 'service[statsd]'
@@ -120,7 +120,7 @@ cookbook_file '/etc/init/statsd.conf' do
   mode 0644
 end
 
-user node[:statsd][:user] do
+user node['statsd']['user'] do
   comment 'statsd'
   system true
   shell '/bin/false'
