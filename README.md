@@ -1,12 +1,12 @@
-= DESCRIPTION:
+# DESCRIPTION:
 
 Installs and configures Statsd (http://github.com/etsy/statsd)
 
-= REQUIREMENTS:
+# REQUIREMENTS:
 
 Ubuntu 11.04 (Natty)
 
-= ATTRIBUTES:
+# ATTRIBUTES:
 
 * statsd/port : The port for Statsd to listen for stats on.
 * statsd/graphite_host : The host to forward processed statistics to.
@@ -16,7 +16,7 @@ Ubuntu 11.04 (Natty)
 * statsd/repo : The gitrepo to use "git://github.com/etsy/statsd.git"
 * statsd/sha  : The sha checksum of the repo to use
 
-= USAGE:
+# USAGE:
 
 Include the statsd recipe, which will checkout Statsd from git, build a Debian package from it, 
 and then install the package. Statsd is run under a "statsd" system user.
@@ -24,7 +24,7 @@ and then install the package. Statsd is run under a "statsd" system user.
 By default statsd will attempt to send statistics to a graphite instance running on localhost, which
 can be configured using the Graphite cookbook at http://community.opscode.com/cookbooks/graphite.
 
-= CAVEATS:
+# CAVEATS:
 
 This cookbook has only been tested on Ubuntu Natty (11.04). That is due to it using the "nodejs" package
 rather then attempting to build Node from source.
