@@ -11,6 +11,7 @@ Ubuntu 11.04 (Natty)
 * statsd/port : The port for Statsd to listen for stats on.
 * statsd/graphite_host : The host to forward processed statistics to.
 * statsd/graphite_port : The port to forward processed statistics to.
+* statsd/graphite_options : Additional [graphite namespacing options](https://github.com/etsy/statsd/blob/master/docs/namespacing.md)
 * statsd/package_version : The version to use when creating the package. Defaults to 0.0.3
 * statsd/tmp_dir : The temporary directory to while building the package
 * statsd/repo : The gitrepo to use "git://github.com/etsy/statsd.git"
