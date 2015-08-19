@@ -99,8 +99,8 @@ if platform?(%w(redhat centos fedora))
   directory '/etc/statsd'
 end
 
-template '/etc/statsd/rdioConfig.js' do
-  source 'rdioConfig.js.erb'
+template '/etc/statsd/config.js' do
+  source 'config.js.erb'
   mode 0644
   variables(
     port: node['statsd']['port'],
