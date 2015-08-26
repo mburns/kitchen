@@ -22,7 +22,14 @@ require 'json'
 
 include_recipe 'nodejs'
 
-directory '/etc/statsd'
+directory '/etc/statsd' do
+  action :create
+end
+
+directory node['statsd']['tmp_dir'] do
+  recursive true
+  action :create
+end
 
 if %w(debian rhel).include?(node['platform_family'])
   include_recipe "statsd::#{node['platform_family']}"
