@@ -1,25 +1,30 @@
-# DESCRIPTION:
+[![Build Status](https://travis-ci.org/mburns/statsd.svg?branch=master)](https://travis-ci.org/mburns/statsd)
+[![Cookbook Version](https://img.shields.io/cookbook/v/statsd.svg)](https://supermarket.chef.io/cookbooks/statsd)
 
-Installs and configures Statsd (http://github.com/etsy/statsd)
+# Description
 
-# REQUIREMENTS:
+Installs and configures [Statsd](http://github.com/etsy/statsd)
 
-* Ubuntu 12.04+
+# Platforms
 
-# ATTRIBUTES:
+* Ubuntu 12.04, 14.04
+* RHEL 6.4, 7.1
 
-* statsd/port : The port for Statsd to listen for stats on.
-* statsd/graphite_host : The host to forward processed statistics to.
-* statsd/graphite_port : The port to forward processed statistics to.
-* statsd/graphite_options : Additional [graphite namespacing options](https://github.com/etsy/statsd/blob/master/docs/namespacing.md)
-* statsd/package_version : The version to use when creating the package. Defaults to 0.0.3
-* statsd/tmp_dir : The temporary directory to while building the package
-* statsd/repo : The gitrepo to use "git://github.com/etsy/statsd.git"
-* statsd/sha  : The sha checksum of the repo to use
+# Attributes
 
-# USAGE:
+Attribute | Type | Default | Description
+--------- | ---- | --------| -----------
+`node['statsd']['port']` | Integer | `8125` | Port for Statsd to listen for stats on
+`node['statsd']['graphite_host']` | String | `'localhost'` | Host to forward processed statistics to
+`node['statsd']['graphite_port']` | Integer | `2003` | Port to forward processed statistics to
+`node['statsd']['graphite_options']` | Hash | `{}` | Additional [graphite namespacing options](https://github.com/etsy/statsd/blob/master/docs/namespacing.md)
+`node['statsd']['package_version']` | String | `'0.6.0'` | Version to use when creating the package
+`node['statsd']['tmp_dir']` | String | `'/tmp'` | Temporary directory to use while building the package
+`node['statsd']['repo']` | String | `'https://github.com/etsy/statsd.git'` | git repository to use
+`node['statsd']['sha']` | Integer | `d16d744e6424dfd519dc71795a212ad1c08c3114` | SHA commit id of the repo to use
 
-Include the statsd recipe, which will checkout Statsd from git, build a Debian package from it, and then install the package. Statsd is run under a "statsd" system user.
+# Usage
 
-By default statsd will attempt to send statistics to a graphite instance running on localhost, which
-can be configured using the Graphite cookbook at http://community.opscode.com/cookbooks/graphite.
+Include the statsd recipe which will checkout Statsd from git, build a package from it, and then install the package. Statsd is run under a "statsd" system user.
+
+By default statsd will attempt to send statistics to a graphite instance running on localhost, which can be configured using the Graphite cookbook at http://community.opscode.com/cookbooks/graphite.
