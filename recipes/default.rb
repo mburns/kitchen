@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+require 'json'
+
 include_recipe 'nodejs'
 
 statsd_version = node['statsd']['sha']
@@ -99,13 +101,20 @@ if platform?(%w(redhat centos fedora))
   directory '/etc/statsd'
 end
 
-template '/etc/statsd/rdioConfig.js' do
-  source 'rdioConfig.js.erb'
+graphite_options_json = nil
+
+if node['statsd']['graphite_options'] != {}
+  graphite_options_json = node['statsd']['graphite_options'].to_json
+end
+
+template '/etc/statsd/config.js' do
+  source 'config.js.erb'
   mode 0644
   variables(
     port: node['statsd']['port'],
     graphitePort: node['statsd']['graphite_port'],
-    graphiteHost: node['statsd']['graphite_host']
+    graphiteHost: node['statsd']['graphite_host'],
+    graphite_options_json: graphite_options_json
   )
 
   notifies :restart, 'service[statsd]'

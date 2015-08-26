@@ -6,3 +6,11 @@ default['statsd']['sha'] = 'd16d744e6424dfd519dc71795a212ad1c08c3114'
 default['statsd']['user'] = 'statsd'
 default['statsd']['repo'] = 'https://github.com/etsy/statsd.git'
 default['statsd']['tmp_dir'] = '/tmp'
+
+# graphite_options come from https://github.com/etsy/statsd/blob/master/docs/namespacing.md
+# example:
+#   default['statsd']['graphite_options'] = {
+#     'legacyNamespace' => false
+#   }
+
+default['statsd']['graphite_options'] = {}

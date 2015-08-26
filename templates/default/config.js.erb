@@ -1,0 +1,7 @@
+{
+graphitePort: <%= @graphitePort %>
+, graphiteHost: "<%= @graphiteHost %>"
+, port: <%= @port %><% if @graphite_options_json %>
+, graphite: <%= @graphite_options_json %>
+<% end %>
+}
