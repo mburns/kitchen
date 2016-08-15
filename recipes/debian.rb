@@ -42,8 +42,8 @@ execute 'build debian package' do
   creates "#{node['statsd']['tmp_dir']}/statsd_#{node['statsd']['package_version']}_all.deb"
 end
 
-package 'statsd' do
+dpkg_package 'statsd' do
   action :install
-  provider Chef::Provider::Package::Dpkg
   source "#{node['statsd']['tmp_dir']}/statsd_#{node['statsd']['package_version']}_all.deb"
+  options '--force-confold'
 end

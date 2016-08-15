@@ -29,12 +29,11 @@ end.run_action(:install)
 
 Gem.clear_paths
 
-package 'rpmdevtools' do
-  action :install
-end
+package 'rpmdevtools'
 
 directory "#{node['statsd']['tmp_dir']}/build/usr/share/statsd/scripts" do
   recursive true
+  action :create
 end
 
 git "#{node['statsd']['tmp_dir']}/build/usr/share/statsd" do
@@ -50,8 +49,7 @@ execute 'build rpm package' do
   creates "#{node['statsd']['tmp_dir']}/build/statsd-#{node['statsd']['package_version']}-1.noarch.rpm"
 end
 
-package 'statsd' do
+rpm_package 'statsd' do
   action :install
-  provider Chef::Provider::Package::Rpm
   source "#{node['statsd']['tmp_dir']}/build/statsd-#{node['statsd']['package_version']}-1.noarch.rpm"
 end
