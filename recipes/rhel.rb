@@ -24,7 +24,7 @@ include_recipe 'nodejs'
 gem_package 'fpm' do
   gem_binary '/opt/chef/embedded/bin/gem'
   action :nothing
-  version '0.4.33'
+  version '0.4.42'
 end.run_action(:install)
 
 Gem.clear_paths
