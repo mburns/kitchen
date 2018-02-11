@@ -37,7 +37,7 @@ rescue LoadError
   puts '>>>>> Kitchen gem not loaded, omitting tasks'
 end
 
-task ci: %w(style unit)
+task ci: %w[style unit]
 
 # Default
-task default: %w(style unit integration:vagrant)
+task default: %w[style unit integration:vagrant]

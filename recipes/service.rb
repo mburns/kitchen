@@ -19,12 +19,12 @@
 
 cookbook_file '/usr/share/statsd/scripts/start' do
   source 'upstart.start'
-  mode 0755
+  mode 0o755
 end
 
 cookbook_file '/etc/init/statsd.conf' do
   source 'upstart.conf'
-  mode 0644
+  mode 0o644
 end
 
 user node['statsd']['user'] do
@@ -36,5 +36,5 @@ end
 
 service 'statsd' do
   provider Chef::Provider::Service::Upstart
-  action [:enable, :start]
+  action %i[enable start]
 end

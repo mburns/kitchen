@@ -1,4 +1,4 @@
-# encoding: UTF-8
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 

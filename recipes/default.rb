@@ -31,19 +31,15 @@ directory node['statsd']['tmp_dir'] do
   action :create
 end
 
-if %w(debian rhel).include?(node['platform_family'])
-  include_recipe "statsd::#{node['platform_family']}"
-end
+include_recipe "statsd::#{node['platform_family']}" if %w[debian rhel].include?(node['platform_family'])
 
 graphite_options_json = nil
 
-if node['statsd']['graphite_options'] != {}
-  graphite_options_json = node['statsd']['graphite_options'].to_json
-end
+graphite_options_json = node['statsd']['graphite_options'].to_json if node['statsd']['graphite_options'] != {}
 
 template '/etc/statsd/config.js' do
   source 'config.js.erb'
-  mode 0644
+  mode 0o644
   variables(
     port: node['statsd']['port'],
     graphitePort: node['statsd']['graphite_port'],
