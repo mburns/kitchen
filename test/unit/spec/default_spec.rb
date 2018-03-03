@@ -1,6 +1,8 @@
 require_relative 'spec_helper'
 
 describe 'statsd::default' do
+  before { stub_resources }
+
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   it 'creates statsd directory' do
