@@ -7,8 +7,8 @@ Installs and configures [Statsd](http://github.com/etsy/statsd)
 
 # Platforms
 
-* Ubuntu 12.04, 14.04
-* RHEL 6.4, 7.1
+* Ubuntu 14.04, 16.04
+* RHEL 6.9, 7.4
 
 # Attributes
 
