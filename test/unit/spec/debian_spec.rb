@@ -30,6 +30,6 @@ describe 'statsd::debian' do
   end
 
   it 'installs statsd via dpkg' do
-    expect(chef_run).to install_package('statsd')
+    expect(chef_run).to install_dpkg_package('statsd')
   end
 end
