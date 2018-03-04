@@ -5,7 +5,6 @@ describe 'statsd::default' do
   supported_platforms.each do |platform, versions|
     versions.each do |version|
       context "on #{platform.capitalize} #{version}" do
-
         let(:chef_run) do
           @chef_run
         end
@@ -29,14 +28,14 @@ describe 'statsd::default' do
             expect(chef_run).to create_directory('/tmp')
           end
 
-          if %w(debian ubuntu).include?(platform)
+          if %w[debian ubuntu].include?(platform)
             it 'include the `statsd::debian` recipe' do
               expect(chef_run).to include_recipe('statsd::debian')
               expect(chef_run).to_not include_recipe('statsd::rhel')
             end
           end
 
-          if %w(amazon redhat centos fedora arch suse freebsd).include?(platform)
+          if %w[amazon redhat centos fedora arch suse freebsd].include?(platform)
             # TODO : check include statsd::rpm with custom attributes
             it 'include the `statsd::rhel` recipe' do
               expect(chef_run).to include_recipe('statsd::rhel')

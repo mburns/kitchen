@@ -5,7 +5,6 @@ describe 'statsd::rhel' do
   supported_platforms.each do |platform, versions|
     versions.each do |version|
       context "on #{platform.capitalize} #{version}" do
-
         let(:chef_run) do
           @chef_run
         end
@@ -17,7 +16,7 @@ describe 'statsd::rhel' do
             @chef_run.converge(described_recipe)
           end
 
-          if %w(amazon redhat centos fedora arch suse freebsd).include?(platform)
+          if %w[amazon redhat centos fedora arch suse freebsd].include?(platform)
             it 'installs fpm via gem_package' do
               expect(chef_run).to install_gem_package('fpm')
             end

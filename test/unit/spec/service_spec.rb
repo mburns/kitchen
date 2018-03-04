@@ -5,7 +5,6 @@ describe 'statsd::service' do
   supported_platforms.each do |platform, versions|
     versions.each do |version|
       context "on #{platform.capitalize} #{version}" do
-
         let(:chef_run) do
           @chef_run
         end

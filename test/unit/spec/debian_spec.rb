@@ -5,7 +5,6 @@ describe 'statsd::debian' do
   supported_platforms.each do |platform, versions|
     versions.each do |version|
       context "on #{platform.capitalize} #{version}" do
-
         let(:chef_run) do
           @chef_run
         end
@@ -17,7 +16,7 @@ describe 'statsd::debian' do
             @chef_run.converge(described_recipe)
           end
 
-          if %w(debian ubuntu).include?(platform)
+          if %w[debian ubuntu].include?(platform)
             it 'includes the `build-essential` recipe' do
               expect(chef_run).to include_recipe('build-essential')
             end
@@ -50,5 +49,4 @@ describe 'statsd::debian' do
       end
     end
   end
-
 end

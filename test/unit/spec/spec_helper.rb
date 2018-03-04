@@ -16,7 +16,7 @@ def supported_platforms
   {
     'ubuntu' => ['14.04', '16.04'],
     'centos' => ['7.3.1611'],
-    'debian' => ['8.9'],
+    'debian' => ['8.9']
   }
 end
 
