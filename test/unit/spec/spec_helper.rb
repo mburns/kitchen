@@ -12,6 +12,14 @@ require 'fauxhai'
 
 at_exit { ChefSpec::Coverage.report! }
 
+def supported_platforms
+  {
+    'ubuntu' => ['14.04', '16.04'],
+    'centos' => ['7.3.1611'],
+    'debian' => ['8.9'],
+  }
+end
+
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.fail_fast = true
@@ -19,9 +27,6 @@ RSpec.configure do |config|
 
   config.log_level = :error
   Ohai::Config[:log_level] = :error
-
-  config.platform = 'ubuntu'
-  config.version = '16.04'
 end
 
 def stub_resources
