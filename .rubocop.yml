@@ -3,3 +3,6 @@ inherit_from: .rubocop_todo.yml
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Max: 120
+
+Metrics/BlockLength:
+  Max: 66
