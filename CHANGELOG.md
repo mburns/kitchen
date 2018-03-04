@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.2.4](https://github.com/mburns/statsd/tree/v0.2.4) (2018-03-02)
+
+
+### Enhancements
+
+* Test against modern CentOS, Debian & Ubuntu versions
+* Lint fix to make CI happy (allow methods longer than 25 lines)
+* Update package name to reflect current statsd version
+
 ## [v0.2.3](https://github.com/mburns/statsd/tree/v0.2.3) (2018-02-11)
 
 [Full Diff](https://github.com/mburns/statsd/compare/8f8438e87e533601ddce9af42d934e68c7e940f9...b7f8b6a801fd2d011c532a98be097fb5edcb7d31)
