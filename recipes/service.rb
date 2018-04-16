@@ -17,6 +17,12 @@
 # limitations under the License.
 #
 
+directory '/usr/share/statsd/scripts' do
+  mode 0o755
+  recursive true
+  action :create
+end
+
 cookbook_file '/usr/share/statsd/scripts/start' do
   source 'upstart.start'
   mode 0o755
