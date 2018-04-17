@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rake'
 
+gem 'chef', '~> 12.15'
+
 group :style do
   gem 'foodcritic'
   gem 'rubocop'
