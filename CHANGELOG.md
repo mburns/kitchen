@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.2.5](https://github.com/mburns/statsd/tree/v0.2.5) 2018-04-16
+
+* [Create missing directory for Upstart script](https://github.com/mburns/statsd/pull/11)
+
 ## [v0.2.4](https://github.com/mburns/statsd/tree/v0.2.4) (2018-03-02)
 
 
