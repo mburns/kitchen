@@ -5,7 +5,7 @@ license 'Apache-2.0'
 description 'Installs/Configures statsd'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.2.4'
-chef_version '>= 12.10' if respond_to?(:chef_version)
+chef_version '>= 12' if respond_to?(:chef_version)
 
 depends 'build-essential'
 depends 'git'
@@ -14,6 +14,7 @@ depends 'nodejs'
 supports 'debian'
 supports 'ubuntu', '>= 12.04'
 supports 'redhat'
+supports 'centos'
 
 recipe 'statsd::default', 'Writes configuration file'
 recipe 'statsd::debian', 'Builds and installs dpkg (ubuntu, debian)'
