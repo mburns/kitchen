@@ -16,3 +16,11 @@ suites:
     run_list:
       - recipe[statsd::default]
     attributes:
+
+  - name: rhel
+    run_list:
+      - recipe[statsd::default]
+    excludes:
+      - ubuntu-14.04
+      - ubuntu-16.04
+      - debian-8.9
