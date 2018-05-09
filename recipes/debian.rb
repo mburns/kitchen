@@ -47,3 +47,9 @@ dpkg_package 'statsd' do
   source "#{node['statsd']['tmp_dir']}/statsd_#{node['statsd']['package_version']}_all.deb"
   options '--force-confold'
 end
+
+# We do our config in /etc/statsd/config.js, this isn't needed.
+file '/etc/statsd/localConfig.js' do
+  action :delete
+  notifies :restart, "service[statsd]"
+end
